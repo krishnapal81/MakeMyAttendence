@@ -22,11 +22,10 @@ app.get('/create',(req,res)=>{
 
 app.post('/create',async(req,res)=>{
 	const { name ,title } = req.body
-	const url = 'mongodb+srv://<MongoDB atlas URL>'
+	const url = 'mongodb://localhost:27017/attendance'
 	var conn = mongoose.createConnection(url,{
 		useNewUrlParser:true,
 		useUnifiedTopology: true,
-		usecreateIndexes:true
 	})
 	const link = conn.model('links',links);
 	
@@ -64,13 +63,12 @@ app.get('/attendance',async(req,res)=>{
 
 
 
-	const url = `mongodb+srv://<MongoDB atlas URL>`
+	const url = `mongodb://localhost:27017/attendance`
 
 	
 	var conn = mongoose.createConnection(url,{
 		useNewUrlParser:true,
-		useUnifiedTopology: true,
-		usecreateIndexes:true
+		useUnifiedTopology: true
 	})
 	const link = conn.model('links',links);
 
@@ -96,11 +94,10 @@ app.post('/attendance', async(req,res)=>{
 
 	
 	const { name,prn } = req.body
-	const url = `mongodb+srv://<MongoDB atlas URL>/${db}`
+	const url = `mongodb://localhost:27017/attendance/${db}`
 	var conn = mongoose.createConnection(url,{
 		useNewUrlParser:true,
 		useUnifiedTopology: true,
-		usecreateIndexes:true
 	})
 	const student = conn.model(date,studentSchema)
 	const newStudent = new student(req.body)
@@ -123,12 +120,11 @@ app.get('/get/:db',async(req,res)=>{
 		return res.sendFile(path.join(__dirname,'errors/error.html'))
 	}
 
-	const url = `mongodb+srv://<MongoDB atlas URL>`
+	const url = `mongodb://localhost:27017/attendance`
 
 	var conn = mongoose.createConnection(url,{
 		useNewUrlParser:true,
 		useUnifiedTopology: true,
-		usecreateIndexes:true
 	})
 	const date = new Date().toISOString().split('T')[0];
 
@@ -146,13 +142,12 @@ app.get('/getinfo/:db',async(req,res)=>{
 
 	const { db } = req.params
 	
-	const url = `mongodb+srv://<MongoDB atlas URL>`
+	const url = `mongodb://localhost:27017/attendance`
 
 	
 	var conn = mongoose.createConnection(url,{
 		useNewUrlParser:true,
 		useUnifiedTopology: true,
-		usecreateIndexes:true
 	})
 	const link = conn.model('links',links);
 
